@@ -1,0 +1,16 @@
+{
+"name":"Fantasy Week Expectations",
+"description":"A button for Twitter to quickly copy in the correct format for Reddit",
+"version":"2",
+"manifest_version":2,
+"icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
+"content_scripts": [
+    {
+      "matches": ["http://games.espn.go.com/*","https://games.espn.go.com/*"],
+      "js": ["jquery-2.1.4.min.js","fantasyWeekExpectation.js"],
+      "css": ["fantasyWeekExpectation.css"]
+    }
+  ]
+}
