@@ -9,8 +9,49 @@ function main() {
 function reloadListener() {
     var btn = document.createElement("DIV");
     btn.className = "button-loadExpectedWeek";
-    btn.onclick = loadNumbers;
+    btn.setAttribute('title','See Week Expectations');
+    btn.onclick = loadAllFunct;
     $("#playerTableContainerDiv").before(btn);
+}
+
+function loadAllFunct() {
+    if($(".playerTableBgRowTotals").length > 0){
+        alert("Please select a period of stats (ex: Last 30)");
+    }else{
+        loadCumulativeGames();
+    }
+}
+
+function loadCumulativeGames() {
+    if ($('.cumulativeOpponents') == null || $('.cumulativeOpponents').length <= 0) {
+        var elements;
+        var cumulativeOpponents;
+        var url = window.location.href;
+        var upcomingscheduleurl = url.split("#")[0] + "&view=upcomingschedule";
+        $.get(upcomingscheduleurl, function(my_var) {
+            elements = $(my_var);
+            $("tr.tableSubHead:first .sectionLeadingSpacer:first").removeClass("sectionLeadingSpacer").html("NEXT 7 DAYS");
+            $("tr.pncPlayerRow").each(function() {
+                var trIndex = $(this).index();
+                var thisPlayerInSchedule = $("tr.pncPlayerRow:nth-child(" + (trIndex + 1) + ")", elements);
+                var thisPlayerNextGames = thisPlayerInSchedule.find("td").slice(-7);
+                var sumPlayedGames = 0;
+                thisPlayerNextGames.each(function() {
+                    if ($(this).html() != "") {
+                        sumPlayedGames = sumPlayedGames + 1;
+                    }
+                });
+                $(this).find(".sectionLeadingSpacer:first").addClass("cumulativeOpponents").removeClass("sectionLeadingSpacer").html(sumPlayedGames + " Games");
+            });
+            if (document.title.indexOf("Free Agents") == -1) {
+                loadNumbers();
+            }
+        }, 'html');
+    } else {
+        if (document.title.indexOf("Free Agents") == -1) {
+            loadNumbers();
+        }
+    }
 }
 
 function loadNumbers() {
