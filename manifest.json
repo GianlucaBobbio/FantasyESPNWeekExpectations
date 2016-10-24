@@ -1,7 +1,7 @@
 {
     "name": "ESPN Fantasy NBA Week Expectations",
     "description": "Would you like to see what can you expect from your players and opponents players any week?",
-    "version": "1",
+    "version": "2",
     "manifest_version": 2,
     "icons": {
         "16": "icon16.png",
@@ -9,7 +9,7 @@
         "128": "icon128.png"
     },
     "content_scripts": [{
-        "matches": ["http://games.espn.go.com/fba/clubhouse*", "https://games.espn.go.com/fba/clubhouse*"],
+        "matches": ["http://games.espn.com/fba/clubhouse*", "https://games.espn.com/fba/clubhouse*"],
         "js": ["jquery-2.1.4.min.js", "fantasyWeekExpectation.js"],
         "css": ["fantasyWeekExpectation.css"]
     }],
