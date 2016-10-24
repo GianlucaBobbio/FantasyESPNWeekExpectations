@@ -6,6 +6,10 @@
 	height: 30px;
 	position: absolute;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 300px;
+}
+
+.pncTopArea{
+	margin-bottom: 0px !important;
 }
